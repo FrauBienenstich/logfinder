@@ -3,17 +3,22 @@ require "pathname"
 class LogFinder
 
   def self.run(path)
+    old_path = Dir.pwd
     Dir.chdir(path) #change into folder
-    where_i_am = Dir.pwd # show absolute path
-    abs_path = Pathname(where_i_am)
+    new_path = Dir.pwd # show absolute path
+
+    abs_path = Pathname(new_path)
     files = abs_path.children
 
-    files.map { |file|
+    result = files.map { |file|
       {
          name: File.absolute_path(file.basename),
          size: file.size
        }
     }
+
+    Dir.chdir(old_path)
+    result
   end
 
 end

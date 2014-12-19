@@ -4,10 +4,10 @@ require_relative 'skript.rb'
 
 class LogFinderTest < Minitest::Test
 
-  # def test_returns_array
-  #   result = LogFinder.run('fixtures')
-  #   assert_equal(Array, result.class)
-  # end
+  def test_returns_array
+    result = LogFinder.run('fixtures')
+    assert_equal(Array, result.class)
+  end
 
   def test_list_files
     pwd = Dir.pwd
