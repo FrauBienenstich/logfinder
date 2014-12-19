@@ -1,3 +1,4 @@
+gem "minitest"
 require 'minitest/autorun'
 require_relative 'skript.rb'
 
@@ -9,10 +10,11 @@ class LogFinderTest < Minitest::Test
   # end
 
   def test_list_files
+    pwd = Dir.pwd
     list = [
-      {name: 'fixtures/brody.txt', size: 0}, 
-      {name: 'fixtures/carrie.txt', size: 0}, 
-      {name: 'fixtures/quinn.txt', size: 0}
+      {name: "#{pwd}/fixtures/brody.txt", size: 10},
+      {name: "#{pwd}/fixtures/carrie.txt", size: 49},
+      {name: "#{pwd}/fixtures/quinn.txt", size: 23}
     ]
     result = LogFinder.run('fixtures')
     assert_equal(list, result)
