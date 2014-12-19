@@ -2,7 +2,6 @@ require "pathname"
 
 class LogFinder
 
-
   def self.run(path)
     Dir.chdir(path) #change into folder
     where_i_am = Dir.pwd # show absolute path
@@ -11,7 +10,7 @@ class LogFinder
 
     files.map { |file| 
       { 
-         name: file.basename.to_s,
+         name: "#{path}/" + "#{file.basename.to_s}",
          size: file.size
        }
     }

@@ -10,7 +10,7 @@ class LogFinderTest < Minitest::Test
 
   def test_list_files
     list = [
-      {name: 'fixtures/brody.txt', size: 0}, 
+      {name: 'fixtures/brody.txt', size: 4}, 
       {name: 'fixtures/carrie.txt', size: 0}, 
       {name: 'fixtures/quinn.txt', size: 0}
     ]
