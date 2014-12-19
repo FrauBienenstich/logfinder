@@ -1,24 +1,20 @@
+require "pathname"
+
 class LogFinder
 
 
   def self.run(path)
-    puts File.size("fixtures/brody.txt")
-    puts Dir.pwd
-    puts path
-    Dir.chdir(path)
-    list_of_files = Dir.entries(path)
-    # list absolute paths
-    list_of_files.map { |file_name| 
-      puts File.size(file_name)
-      # { 
-      #   name: File.basename(file_name),
-      #   name: File.size(file_name)
-      # }
+    Dir.chdir(path) #change into folder
+    where_i_am = Dir.pwd # show absolute path
+    abs_path = Pathname(where_i_am)
+    files = abs_path.children
+
+    files.map { |file| 
+      { 
+         name: file.basename.to_s,
+         size: file.size
+       }
     }
   end
 
 end
-
-
-# File.expand_path(File.dirname(__FILE__))
-# muss in fixtures rein!!! oder: 
