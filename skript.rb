@@ -4,7 +4,7 @@ class LogFinder
 
   def self.run(path)
     Dir.chdir(path) #change into folder
-    where_i_am = Dir.pwd # show absolute path
+    where_i_am = Pathname.getwd # show absolute path
     abs_path = Pathname(where_i_am)
     files = abs_path.children
 
