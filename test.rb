@@ -9,12 +9,12 @@ class LogFinderTest < Minitest::Test
     assert_equal(Array, result.class)
   end
 
-  def test_list_files
+  def test_list_files_sorted_by_size
     pwd = Dir.pwd
     list = [
-      {name: "#{pwd}/fixtures/brody.txt", size: 10},
       {name: "#{pwd}/fixtures/carrie.txt", size: 49},
-      {name: "#{pwd}/fixtures/quinn.txt", size: 23}
+      {name: "#{pwd}/fixtures/quinn.txt", size: 23},
+      {name: "#{pwd}/fixtures/brody.txt", size: 10}
     ]
     result = LogFinder.run('fixtures')
     assert_equal(list, result)
