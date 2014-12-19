@@ -10,9 +10,9 @@ class LogFinder
 
     files.map { |file| 
       { 
-         name: "#{path}/" + "#{file.basename.to_s}",
-         size: file.size
-       }
+        name: "#{path}/" + "#{file.basename.to_s}",
+        size: file.size
+      }
     }
   end
 
