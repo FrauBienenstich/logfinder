@@ -16,6 +16,7 @@ class LogFinder
          size: file.size
        }
     end
+    result = (result.sort_by {|k| k[:size]}).reverse
 
     Dir.chdir(old_path) #change back into old folder
     result
