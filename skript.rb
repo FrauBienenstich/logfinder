@@ -12,7 +12,7 @@ class LogFinder
 
     result = files.map do |file|
       {
-         name: File.absolute_path(file.basename),
+         name: Pathname.new(file.basename).realpath.to_s,
          size: file.size
        }
     end
