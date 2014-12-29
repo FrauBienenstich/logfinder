@@ -6,9 +6,8 @@ class LogFinder
   def self.run(path)
     old_path = Pathname.getwd
     Dir.chdir(path) #change into folder
-    new_path = Pathname.getwd
 
-    files = new_path.children
+    files = Pathname.glob('*.log')
 
     result = files.map do |file|
       {
@@ -17,7 +16,6 @@ class LogFinder
        }
     end
     result = (result.sort_by {|k| k[:size]}).reverse
-
     Dir.chdir(old_path) #change back into old folder
     result
   end
