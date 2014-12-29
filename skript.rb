@@ -1,4 +1,5 @@
 require "pathname"
+require "pry"
 
 class LogFinder
 
@@ -7,8 +8,7 @@ class LogFinder
     Dir.chdir(path) #change into folder
     new_path = Pathname.getwd
 
-    abs_path = Pathname(new_path)
-    files = abs_path.children
+    files = new_path.children
 
     result = files.map do |file|
       {
