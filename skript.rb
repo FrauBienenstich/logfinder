@@ -1,9 +1,8 @@
 require "pathname"
 require "pry"
+require "awesome_print"
 
 class LogFinder
-
-  #attr_accessor :path
 
   def initialize(path)
     @path = path
@@ -24,6 +23,8 @@ class LogFinder
     sorted_result = order(result)
 
     Dir.chdir(old_path) #change back into old folder
+
+    ap sorted_result
     sorted_result
   end
 
@@ -41,5 +42,4 @@ class LogFinder
   def order(result)
     (result.sort_by {|k| k[:size]}).reverse
   end
-
 end
