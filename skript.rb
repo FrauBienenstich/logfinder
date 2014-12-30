@@ -7,11 +7,11 @@ class LogFinder
     old_path = Pathname.getwd
     Dir.chdir(path) #change into folder
 
-    files = Pathname.glob('*.log')
+    files = Pathname.glob('**/*.log') 
 
     result = files.map do |file|
       {
-         name: Pathname.new(file.basename).realpath.to_s,
+         name: file.realpath.to_s,
          size: file.size
        }
     end

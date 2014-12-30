@@ -11,37 +11,33 @@ class LogFinderTest < Minitest::Test
 
   def test_list_files_sorted_by_size
     pwd = Pathname.getwd
-    list = [
+    unordered_list = [
       {name: "#{pwd}/fixtures/haqqani.log", size: 106},
-      {name: "#{pwd}/fixtures/saul.log", size: 23}
+      {name: "#{pwd}/fixtures/smoar/abu_nazir.log", size: 7},
+      {name: "#{pwd}/fixtures/saul.log", size: 23},
+      {name: "#{pwd}/fixtures/smoar/dana.log", size: 1}
     ]
     result = LogFinder.run('fixtures')
-    assert_equal(list, result)
+    refute_equal(unordered_list, result)
   end
 
-  def test_list_only_log_files
+  def test_do_not_list_non_log_files
     pwd = Pathname.getwd
-    list = [
-      {name: "#{pwd}/fixtures/haqqani.log", size: 106},
-      {name: "#{pwd}/fixtures/saul.log", size: 23}
-    ]
-
+    text_file  = {name: "#{pwd}/fixtures/carrie.txt", size: 50}
     result = LogFinder.run('fixtures')
-    assert_equal(list, result)
+    refute_includes(result, text_file) # watch order!
   end
 
-  def test_do_not_list_other_files
+  def test_find_log_files_recursively
     pwd = Pathname.getwd
-    full_list = [
-      {name: "#{pwd}/fixtures/haqqani.log", size: 106}, 
-      {name: "#{pwd}/fixtures/carrie.txt", size: 50}, 
-      {name: "#{pwd}/fixtures/quinn.txt", size: 24}, 
-      {name: "#{pwd}/fixtures/saul.log", size: 23}, 
-      {name: "#{pwd}/fixtures/brody.txt", size: 11}
+    all_log_files = [
+      {name: "#{pwd}/fixtures/haqqani.log", size: 106},
+      {name: "#{pwd}/fixtures/saul.log", size: 23},
+      {name: "#{pwd}/fixtures/smoar/abu_nazir.log", size: 7},
+      {name: "#{pwd}/fixtures/smoar/dana.log", size: 1}
     ]
     result = LogFinder.run('fixtures')
-    refute_equal(full_list, result)
-
+    assert_equal(all_log_files, result)
   end
 
 end
